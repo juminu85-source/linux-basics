@@ -1,5 +1,5 @@
 #!/bin/sh
-git add .
+git add -f .
 
 commitmsg=''
 
