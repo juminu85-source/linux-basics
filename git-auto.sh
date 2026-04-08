@@ -1,12 +1,15 @@
-#!/bin/sh
-git add -f .
+#!/bin/bash
 
-commitmsg=''
+# 1. 깃허브에서 최신 내용 가져오기
+git pull https://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@github.com/juminu85-source/linux-basics.git main --rebase
 
-echo "커밋 메시지 입력 : "
+# 2. 변경사항 담기
+git add .
+
+# 3. 커밋 메시지 입력받기
+echo -n "커밋 메시지 입력 : "
 read commitmsg
-echo "commitmsg: $commitmsg"
 
-git commit -m "$commitmsg" --allow-empty
-#뛰어쓰기 때문에 "을 필수 사용하고 -m 옵션을 사용해서 한줄로 처리 하게끔 수정해야함
-git push origin main
+# 4. 깃허브로 강제 전송 (토큰 주소 사용)
+git commit -m "$commitmsg"
+git push https://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@github.com/juminu85-source/linux-basics.git main --force
