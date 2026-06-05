@@ -1,0 +1,24 @@
+services:
+  data-generator:
+    build:
+      context: .
+      dockerfile: uv-weather-original-plus/Dockerfile
+    container_name: uv-weather-data-generator
+    environment:
+      - TZ=Asia/Seoul
+    volumes:
+      - .:/app
+      - ./data:/app/data
+    restart: unless-stopped
+
+  web:
+    image: nginx:1.27-alpine
+    container_name: uv-weather-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./html:/usr/share/nginx/html:ro
+      - ./data:/usr/share/nginx/html/data:ro
+    depends_on:
+      - data-generator
+    restart: unless-stopped

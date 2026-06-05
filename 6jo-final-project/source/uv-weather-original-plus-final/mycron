@@ -1,0 +1,1 @@
+*/10 * * * * /bin/bash /app/uv-weather-original-plus/update_data.sh >> /var/log/cron.log 2>&1
